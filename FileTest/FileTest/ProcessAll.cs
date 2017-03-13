@@ -11,7 +11,11 @@ namespace FileTest
     {
         public void ProcessFile(string path)
         {
-            Console.WriteLine("Processed file '{0}'.", path + "| file name: " + Path.GetFileNameWithoutExtension(path) + "| file extention: " + Path.GetExtension(path));
+            //Console.WriteLine("Processed file '{0}'.", path + "| file name: " + Path.GetFileNameWithoutExtension(path) + "| file extention: " + Path.GetExtension(path));
+            using (StreamWriter sw = File.AppendText(Program.resultFilePath))
+            {
+                sw.WriteLine(path);
+            }
         }
     }
 }
