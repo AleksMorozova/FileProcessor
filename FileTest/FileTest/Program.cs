@@ -11,6 +11,7 @@ namespace FileTest
     class Program
     {
         public static string resultFilePath = @"D:\MyTest.txt";
+        public static string startFolder = @"D:\Main";
         static void Main(string[] args)
         {
             Registration.Registrate(ActionType.all);      

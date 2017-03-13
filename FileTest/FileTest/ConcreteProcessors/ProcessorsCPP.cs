@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTest
+namespace FileTest.ConcreteProcessors
 {
-    public class ProcessAll: IProcess
+    public class ProcessorsCPP : IProcess
     {
         public void ProcessFile(string path)
         {
-            //Console.WriteLine("Processed file '{0}'.", path + "| file name: " + Path.GetFileNameWithoutExtension(path) + "| file extention: " + Path.GetExtension(path));
             using (StreamWriter sw = File.AppendText(Program.resultFilePath))
             {
+                if (Path.GetExtension(path) == ".cpp")
                 sw.WriteLine(path);
             }
         }

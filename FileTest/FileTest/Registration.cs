@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FileTest.ConcreteProcessors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,10 @@ namespace FileTest
                     builder.RegisterType<ProcessAll>().As<IProcess>();
                     break;
                 case ActionType.cpp:
-                    builder.RegisterType<ProcessAll>().As<IProcess>();
+                    builder.RegisterType<ProcessorsCPP>().As<IProcess>();
                     break;
                 case ActionType.reverse1:
-                    builder.RegisterType<ProcessAll>().As<IProcess>();
+                    builder.RegisterType<ProccessReversed1>().As<IProcess>();
                     break;
                 case ActionType.reverse2:
                     builder.RegisterType<ProccessReversed2>().As<IProcess>();

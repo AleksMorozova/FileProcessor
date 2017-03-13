@@ -17,14 +17,14 @@ namespace FileTest
 
         public void Process()
         {
-            if (Directory.Exists(@"D:\Main"))
+            if (Directory.Exists(Program.startFolder))
             {
                 // This path is a directory
-                ProcessDirectory(@"D:\Main");
+                ProcessDirectory(Program.startFolder);
             }
             else
             {
-                Console.WriteLine("{0} is not a valid file or directory.", @"D:\Main");
+                Console.WriteLine("{0} is not a valid file or directory.", Program.startFolder);
             }
 
         }

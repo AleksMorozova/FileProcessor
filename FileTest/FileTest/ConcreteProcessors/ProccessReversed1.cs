@@ -5,13 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FileTest
+namespace FileTest.ConcreteProcessors
 {
-    public class ProccessReversed2: IProcess
+    public class ProccessReversed1 : IProcess
     {
         public void ProcessFile(string path)
         {
-            Console.WriteLine("Processed file '{0}'.", path + "| file name: " + Path.GetFileNameWithoutExtension(path) + "| file extention: " + Path.GetExtension(path));
+            using (StreamWriter sw = File.AppendText(Program.resultFilePath))
+            {
+                sw.WriteLine(ReverseString(path));
+            }
         }
         public string ReverseString(string s)
         {
