@@ -9,10 +9,10 @@ namespace FileTest
 {
     public class MainProcessor
     {
-        private  IProcess _repository;
-        public MainProcessor(IProcess repository)
+        private  IProcess _processor;
+        public MainProcessor(IProcess processor)
         {
-            _repository = repository;
+            _processor = processor;
         }
 
         public void Process()
@@ -32,16 +32,24 @@ namespace FileTest
         // Process all files in the directory passed in, recurse on any directories 
         // that are found, and process the files they contain.
         public void ProcessDirectory(string targetDirectory)
-        {
-            // Process the list of files found in the directory.
+        {      
             string[] fileEntries = Directory.GetFiles(targetDirectory);
+            List<Task> tasks = new List<Task>();
             foreach (string fileName in fileEntries)
-                _repository.ProcessFile(fileName);
+            {
+                Task task = Task.Run(() => _processor.ProcessFile(fileName));
+                tasks.Add(task);
+            }
+            Task.WaitAll(tasks.ToArray());
 
-            // Recurse into subdirectories of this directory.
+            List<Task> subTasks = new List<Task>();
             string[] subdirectoryEntries = Directory.GetDirectories(targetDirectory);
             foreach (string subdirectory in subdirectoryEntries)
-                ProcessDirectory(subdirectory);
+            {
+                Task task = Task.Run(() => ProcessDirectory(subdirectory));
+                subTasks.Add(task);
+            }
+            Task.WaitAll(subTasks.ToArray());
         }
     }
 }

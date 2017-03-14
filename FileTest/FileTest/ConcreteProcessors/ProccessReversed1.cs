@@ -16,7 +16,8 @@ namespace FileTest.ConcreteProcessors
                 sw.WriteLine(ReverseString(path));
             }
         }
-        public string ReverseString(string s)
+
+        private string ReverseString(string s)
         {
             char[] arr = s.ToCharArray();
             Array.Reverse(arr);
