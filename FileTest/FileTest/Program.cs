@@ -10,11 +10,13 @@ namespace FileTest
 { 
     class Program
     {
-        public static string resultFilePath = @"D:\MyTest.txt";
+        public static string resultFilePath = @"D:\result.txt";
         public static string startFolder = @"D:\Main";
         static void Main(string[] args)
         {
-            Registration.Registrate(ActionType.all);      
+            System.Console.WriteLine(args.Length);
+
+            Registration.Registrate(ActionType.reverse1);      
             var processor = new MainProcessor(Registration.processor);
             processor.Process();
             Console.WriteLine("End directory processing");

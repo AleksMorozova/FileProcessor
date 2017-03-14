@@ -13,15 +13,21 @@ namespace FileTest.ConcreteProcessors
         {
             using (StreamWriter sw = File.AppendText(Program.resultFilePath))
             {
-                sw.WriteLine(ReverseString(path));
+                sw.WriteLine(ReverseString(path.Replace(Program.startFolder + @"\", String.Empty)));
             }
         }
 
-        private string ReverseString(string s)
+        private string ReverseString(string path)
         {
-            char[] arr = s.ToCharArray();
-            Array.Reverse(arr);
-            return new string(arr);
+            StringBuilder result = new StringBuilder();
+
+            var substrings = path.Split('\\').ToList();
+            foreach (var substring in substrings)
+            {
+                result.Append('\\');
+                result.Append(new string(substring.Reverse().ToArray()));
+            }
+            return result.ToString();
         }
     }
 }

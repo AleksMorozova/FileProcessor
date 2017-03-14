@@ -13,7 +13,7 @@ namespace FileTest.ConcreteProcessors
         {
             using (StreamWriter sw = File.AppendText(Program.resultFilePath))
             {
-                sw.WriteLine(new string(path.Reverse().ToArray()));
+                sw.WriteLine(new string(path.Replace(Program.startFolder + @"\", String.Empty).Reverse().ToArray()));
             }
         }
     }

@@ -34,7 +34,7 @@ namespace FileTest
                     builder.RegisterType<ProccessReversed2>().As<IProcess>();
                     break;
                 default:
-                    builder.RegisterType<ProcessAll>().As<IProcess>();
+                    Console.WriteLine("Error type!");
                     break;
             }
             return builder;
