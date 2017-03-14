@@ -14,9 +14,13 @@ namespace FileTest
         public static string startFolder = @"D:\Main";
         static void Main(string[] args)
         {
-            System.Console.WriteLine(args.Length);
+            var options = new Options();
+            CommandLine.Parser.Default.ParseArguments(args, options);
 
-            Registration.Registrate(ActionType.reverse1);      
+            resultFilePath = options.ResultFile;
+            startFolder = options.StartFolder;
+
+            Registration.Registrate(options.Type);      
             var processor = new MainProcessor(Registration.processor);
             processor.Process();
             Console.WriteLine("End directory processing");
