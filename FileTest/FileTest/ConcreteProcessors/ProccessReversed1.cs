@@ -21,11 +21,15 @@ namespace FileTest.ConcreteProcessors
         {
             StringBuilder result = new StringBuilder();
 
-            var substrings = path.Split('\\').ToList();
-            foreach (var substring in substrings)
+            var subStrings = path.Split('\\').ToList();
+            foreach (var substring in subStrings)
             {
-                result.Append('\\');
                 result.Append(new string(substring.Reverse().ToArray()));
+                result.Append('\\');
+            }
+            if (result.ToString().EndsWith("\\"))
+            {
+                result.Remove(result.Length - 1, 1);
             }
             return result.ToString();
         }
