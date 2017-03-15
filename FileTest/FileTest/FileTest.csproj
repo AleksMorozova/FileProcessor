@@ -41,6 +41,10 @@
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.4.1\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,6 +58,9 @@
     <Compile Include="ActionType.cs" />
     <Compile Include="ConcreteProcessors\ProccessReversed1.cs" />
     <Compile Include="ConcreteProcessors\ProcessorsCPP.cs" />
+    <Compile Include="ArgumentsValidator.cs" />
+    <Compile Include="FileWrapper.cs" />
+    <Compile Include="IFileWrapper.cs" />
     <Compile Include="IProcess.cs" />
     <Compile Include="MainProcessor.cs" />
     <Compile Include="ConcreteProcessors\ProccessReversed2.cs" />

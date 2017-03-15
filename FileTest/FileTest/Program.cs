@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,16 +15,25 @@ namespace FileTest
         public static string startFolder = @"D:\Main";
         static void Main(string[] args)
         {
-            var options = new Options();
-            CommandLine.Parser.Default.ParseArguments(args, options);
+            var options = new CommandLineArguments();
+            ArgumentsValidator validator = new ArgumentsValidator();
+            ValidationResult results = validator.Validate(options);
 
-            resultFilePath = options.ResultFile;
-            startFolder = options.StartFolder;
-
-            Registration.Registrate(options.Type);      
-            var processor = new MainProcessor(Registration.processor);
-            processor.Process();
-            Console.WriteLine("End directory processing");
+            if (results.IsValid)
+            {
+                CommandLine.Parser.Default.ParseArguments(args, options);
+                resultFilePath = options.ResultFile;
+                startFolder = options.StartFolder;
+                Registration.Registrate(options.Type);
+                var processor = new MainProcessor(Registration.processor, Registration.fileWrapper);
+                processor.Process(startFolder);
+                Console.WriteLine("End directory processing");
+            }
+            else
+            {
+                Console.WriteLine("Input correct parameters");
+            }
+         
             Console.ReadKey();
         }
     }

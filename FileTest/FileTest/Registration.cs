@@ -11,9 +11,11 @@ namespace FileTest
     public static class Registration
     {
         public static IProcess processor;
+        public static IFileWrapper fileWrapper;
         public static void Registrate(ActionType type)
         {
             processor = GetBuilder(type).Build().Resolve<IProcess>();
+            fileWrapper = GetBuilder(type).Build().Resolve<IFileWrapper>();
         }
         private static ContainerBuilder GetBuilder(ActionType type)
         {
@@ -37,6 +39,7 @@ namespace FileTest
                     Console.WriteLine("Error type!");
                     break;
             }
+            builder.RegisterType<FileWrapper>().As<IFileWrapper>();
             return builder;
         }
     }

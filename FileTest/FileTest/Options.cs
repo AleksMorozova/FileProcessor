@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FileTest
 {
-    class Options
+    public class CommandLineArguments
     {
         [Option("s", Required = true, DefaultValue = @"D:\Main",
             HelpText = "Input file to be processed.")]
