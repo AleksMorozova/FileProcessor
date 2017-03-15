@@ -11,9 +11,9 @@ namespace FileTest.ConcreteProcessors
     {
         public void ProcessFile(string path)
         {
-            using (StreamWriter sw = File.AppendText(Program.resultFilePath))
+            using (StreamWriter sw = File.AppendText(Program.ResultFilePath))
             {
-                sw.WriteLine(new string(path.Replace(Program.startFolder + @"\", String.Empty).Reverse().ToArray()));
+                sw.WriteLine(new string(path.Reverse().ToArray()));
             }
         }
     }

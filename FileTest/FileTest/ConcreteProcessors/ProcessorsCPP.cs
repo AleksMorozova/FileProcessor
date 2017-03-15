@@ -11,10 +11,10 @@ namespace FileTest.ConcreteProcessors
     {
         public void ProcessFile(string path)
         {
-            using (StreamWriter sw = File.AppendText(Program.resultFilePath))
+            using (StreamWriter sw = File.AppendText(Program.ResultFilePath))
             {
                 if (Path.GetExtension(path) == ".cpp")
-                    sw.WriteLine(path.Replace(Program.startFolder + @"\", String.Empty));
+                    sw.WriteLine(path);
             }
         }
     }
