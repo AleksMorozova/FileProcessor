@@ -26,7 +26,7 @@ namespace FileTest
             }
             else
             {
-                Console.WriteLine("{0} is not a valid file or directory.", Program.StartFolder);
+                Console.WriteLine("{0} is not a valid file or directory.", path);
             }
 
         }
@@ -46,7 +46,7 @@ namespace FileTest
             var files = await GetFiles(path);
 
             Parallel.ForEach(files, (file) => 
-                _processor.ProcessFile(file.Replace(Program.StartFolder + @"\", String.Empty)));
+                _processor.ProcessFile(file.Replace(path + @"\", String.Empty)));
 
             await GetDirectories(path).ContinueWith(async dirs => Parallel.ForEach(await dirs,(d) => Process(d)));
         }

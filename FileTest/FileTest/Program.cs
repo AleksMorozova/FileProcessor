@@ -11,8 +11,8 @@ namespace FileTest
 { 
     class Program
     {
-        public static string resultFilePath = @"D:\result.txt";
-        public static string startFolder = @"D:\Main";
+        public static string ResultFilePath { get; set; }
+        public static string StartFolder { get; set; }
         static void Main(string[] args)
         {
             var options = new CommandLineArguments();
@@ -22,11 +22,11 @@ namespace FileTest
             if (results.IsValid)
             {
                 CommandLine.Parser.Default.ParseArguments(args, options);
-                resultFilePath = options.ResultFile;
-                startFolder = options.StartFolder;
+                ResultFilePath = options.ResultFile;
+                StartFolder = options.StartFolder;
                 Registration.Registrate(options.Type);
                 var processor = new MainProcessor(Registration.processor, Registration.fileWrapper);
-                processor.Process(startFolder);
+                processor.Process(StartFolder);
                 Console.WriteLine("End directory processing");
             }
             else
