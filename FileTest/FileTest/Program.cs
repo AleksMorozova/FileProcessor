@@ -1,5 +1,4 @@
-﻿using Autofac;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,15 +9,16 @@ namespace FileTest
 { 
     class Program
     {
-        public static string resultFilePath = @"D:\result.txt";
-        public static string startFolder = @"D:\Main";
+        public static string ResultFilePath { get; set; }
+        public static string StartFolder { get; set; }
+
         static void Main(string[] args)
         {
             var options = new Options();
             CommandLine.Parser.Default.ParseArguments(args, options);
 
-            resultFilePath = options.ResultFile;
-            startFolder = options.StartFolder;
+            ResultFilePath = options.ResultFile;
+            StartFolder = options.StartFolder;
 
             Registration.Registrate(options.Type);      
             var processor = new MainProcessor(Registration.processor);

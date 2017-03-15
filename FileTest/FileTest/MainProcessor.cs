@@ -18,13 +18,13 @@ namespace FileTest
 
         public void Process()
         {
-            if (Directory.Exists(Program.startFolder))
+            if (Directory.Exists(Program.StartFolder))
             {
-                Process(Program.startFolder);
+                Process(Program.StartFolder);
             }
             else
             {
-                Console.WriteLine("{0} is not a valid file or directory.", Program.startFolder);
+                Console.WriteLine("{0} is not a valid file or directory.", Program.StartFolder);
             }
 
         }
@@ -44,7 +44,7 @@ namespace FileTest
             var files = await GetFiles(path);
 
             Parallel.ForEach(files, (file) => 
-                _processor.ProcessFile(file.Replace(Program.startFolder + @"\", String.Empty)));
+                _processor.ProcessFile(file.Replace(Program.StartFolder + @"\", String.Empty)));
 
             await GetDirectories(path).ContinueWith(async dirs => Parallel.ForEach(await dirs,(d) => Process(d)));
         }
