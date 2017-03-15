@@ -44,7 +44,7 @@ namespace FileTest
             var files = await GetFiles(path);
             foreach(var file in files)
             {
-                _processor.ProcessFile(file);
+                _processor.ProcessFile(file.Replace(Program.startFolder + @"\", String.Empty));
             }
             await GetDirectories(path).ContinueWith(async dirs => { foreach (var d in await dirs) { Process(d); } });
         }
